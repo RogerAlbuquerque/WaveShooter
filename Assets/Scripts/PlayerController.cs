@@ -4,19 +4,56 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody2D rgPlayer;
+    public Rigidbody2D RgPlayer;
+    public Animator PlayerAnimation;
     private float ControllerX,ControllerY;
-    public float speed;
+    public float Speed;
+    private Vector2 Movement;
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(transform.position.y >= 17.8f)
+        MapLimiter();
+
+        Movement.x = Input.GetAxis("Horizontal");
+        Movement.y = Input.GetAxis("Vertical");
+
+        RgPlayer.velocity = new Vector2(Movement.x, Movement.y) * Speed;
+
+
+        // TESTES
+        if (Input.GetKey(KeyCode.L))
+        {
+        
+        }
+
+        PlayerAnimation.SetFloat("Move X", Movement.x);
+        PlayerAnimation.SetFloat("Move Y", Movement.y);
+        PlayerAnimation.SetFloat("Velocity", Movement.sqrMagnitude);
+
+       
+        if (Movement != Vector2.zero)
+        {
+            PlayerAnimation.SetFloat("LookDirectionX", Movement.x);
+            PlayerAnimation.SetFloat("LookDirectionY", Movement.y);
+        }
+        //skinController();
+
+
+
+
+
+    }
+
+
+
+    void MapLimiter()
+    {
+        if (transform.position.y >= 17.8f)
         {
             // print(.position.y);
             transform.position = new Vector2(transform.position.x, 17.8f);
@@ -38,12 +75,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector2(-15.52f, transform.position.y);
 
         }
-        ControllerX = Input.GetAxis("Horizontal");
-        ControllerY = Input.GetAxis("Vertical");
-
-        rgPlayer.velocity = new Vector2(ControllerX * speed,ControllerY * speed);
-       
-       
-        
     }
+
+  
 }
