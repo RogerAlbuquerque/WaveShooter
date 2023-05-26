@@ -6,9 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D RgPlayer;
     public Animator PlayerAnimation;
-    private float ControllerX,ControllerY;
+    private Vector3 Mouse;
     public float Speed;
     private Vector2 Movement;
+    [SerializeField] private GameObject Bullet;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,26 +23,56 @@ public class PlayerController : MonoBehaviour
 
         Movement.x = Input.GetAxis("Horizontal");
         Movement.y = Input.GetAxis("Vertical");
+        Mouse = Input.mousePosition;
+        Mouse = Camera.main.ScreenToWorldPoint(Mouse);
 
-        RgPlayer.velocity = new Vector2(Movement.x, Movement.y) * Speed;
+        Vector2 direction = new Vector2(Mouse.x - transform.position.x, Mouse.y - transform.position.y);
+        transform.up = -direction;
+
+
+        // RgPlayer.velocity = new Vector2(Mouse.x - transform.position.x, Mouse.y - transform.position.y) * Speed;
 
 
         // TESTES
-        if (Input.GetKey(KeyCode.L))
+        if (Input.GetButtonDown("Fire1"))
         {
-        
+            Instantiate(Bullet, this.gameObject.transform);
         }
 
-        PlayerAnimation.SetFloat("Move X", Movement.x);
-        PlayerAnimation.SetFloat("Move Y", Movement.y);
-        PlayerAnimation.SetFloat("Velocity", Movement.sqrMagnitude);
-
-       
-        if (Movement != Vector2.zero)
+        if(Input.GetKey(KeyCode.S))
         {
-            PlayerAnimation.SetFloat("LookDirectionX", Movement.x);
-            PlayerAnimation.SetFloat("LookDirectionY", Movement.y);
+            transform.Translate(0, Speed * Time.deltaTime, 0);
         }
+        if (Input.GetKey(KeyCode.W))
+        {
+            transform.Translate(0, -Speed * Time.deltaTime, 0);
+        }
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            transform.Translate(Speed * Time.deltaTime,0 , 0);
+        }
+        if (Input.GetKey(KeyCode.D))
+        {
+            transform.Translate(-Speed * Time.deltaTime, 0 , 0);
+        }
+
+
+
+
+        //transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y, -1));
+
+
+        //PlayerAnimation.SetFloat("Move X", Movement.x);
+        //PlayerAnimation.SetFloat("Move Y", Movement.y);
+        //PlayerAnimation.SetFloat("Velocity", Movement.sqrMagnitude);
+
+
+        // if (Movement != Vector2.zero)
+        //{
+        //  PlayerAnimation.SetFloat("LookDirectionX", Movement.x);
+        //PlayerAnimation.SetFloat("LookDirectionY", Movement.y);
+        //}
         //skinController();
 
 
