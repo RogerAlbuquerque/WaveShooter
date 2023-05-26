@@ -6,13 +6,14 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     // Start is called before the first frame update
-    public Transform player;
+    private Transform player;
     public NavMeshAgent agent;
     public float speed;
     void Start()
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
+        player = GameObject.Find("Player").transform;
         
     }
 
@@ -22,4 +23,14 @@ public class EnemyController : MonoBehaviour
         // transform.position = Vector3.Lerp(transform.position, player.position, speed * Time.deltaTime);
         agent.SetDestination(player.position);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.tag == "Bullet")
+        {
+            Destroy(this.gameObject);
+        }
+       
+    }
+
 }

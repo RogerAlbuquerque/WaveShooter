@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2325806142322940584}
   - component: {fileID: 1209540011926820232}
   - component: {fileID: 7568617915909997486}
+  - component: {fileID: 123370856}
   m_Layer: 0
   m_Name: projectile
   m_TagString: Bullet
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2032522485
-  m_SortingLayer: 2
+  m_SortingLayer: 0
   m_SortingOrder: 11
   m_Sprite: {fileID: 1115682805434658061, guid: 30edb9d12883df642bcb8b4f9bb0c3da,
     type: 3}
@@ -98,3 +99,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19c92b8d624c8d4691fbca858a298fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!70 &123370856
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7929709700368745943}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.035}
+  m_Size: {x: 0.9, y: 0.24}
+  m_Direction: 1
