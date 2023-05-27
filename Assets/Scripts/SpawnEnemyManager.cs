@@ -22,8 +22,24 @@ public class SpawnEnemyManager : MonoBehaviour
         while(true)
         {
             byte randomEnemySpawn = (byte)Random.Range(0, 4);
-            Instantiate(enemy[randomEnemySpawn], new Vector3(0, 4, 0), Quaternion.identity);
-            yield return new WaitForSeconds(5.0f);
+            if(randomEnemySpawn == 0)
+            {
+                Instantiate(enemy[randomEnemySpawn], new Vector3(-15, 7, 0), Quaternion.identity);
+            }
+            if (randomEnemySpawn == 1)
+            {
+                Instantiate(enemy[randomEnemySpawn], new Vector3(15, 7, 0), Quaternion.identity);
+            }
+            if (randomEnemySpawn == 2)
+            {
+                Instantiate(enemy[randomEnemySpawn], new Vector3(-2f, 16.7f, 0), Quaternion.identity);
+            }
+            if (randomEnemySpawn == 3)
+            {
+                Instantiate(enemy[randomEnemySpawn], new Vector3(-2, -5.1f, 0), Quaternion.identity);
+            }
+
+            yield return new WaitForSeconds(2f);
         }
     }
 }

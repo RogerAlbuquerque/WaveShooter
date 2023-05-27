@@ -21,4 +21,13 @@ public class BulletMovement : MonoBehaviour
 
         transform.Translate(Vector3.right);
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Enemy")
+        {
+           
+            Destroy(this.gameObject);
+        }
+
+    }
 }

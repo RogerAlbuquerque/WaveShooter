@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5892108567650721328}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -101,7 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c76658a0f1ac64b9657f40860b713d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
+  enemyDeathAnim: {fileID: 8811118175730991924, guid: 7866cdae2f9f3b84d9933c44c78000f3,
+    type: 3}
   agent: {fileID: 5892108567650721329}
   speed: 0.5
 --- !u!70 &5892108567650721334

@@ -29,54 +29,18 @@ public class PlayerController : MonoBehaviour
         Vector2 direction = new Vector2(Mouse.x - transform.position.x, Mouse.y - transform.position.y);
         transform.up = -direction;
 
-
-        // RgPlayer.velocity = new Vector2(Mouse.x - transform.position.x, Mouse.y - transform.position.y) * Speed;
-
-
-        // TESTES
         if (Input.GetButtonDown("Fire1"))
         {
             Instantiate(Bullet, this.gameObject.transform);
         }
 
-        if(Input.GetKey(KeyCode.S))
-        {
-            transform.Translate(0, Speed * Time.deltaTime, 0);
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            transform.Translate(0, -Speed * Time.deltaTime, 0);
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.Translate(Speed * Time.deltaTime,0 , 0);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.Translate(-Speed * Time.deltaTime, 0 , 0);
-        }
 
 
 
-
-        //transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y, -1));
-
-
-        //PlayerAnimation.SetFloat("Move X", Movement.x);
-        //PlayerAnimation.SetFloat("Move Y", Movement.y);
-        //PlayerAnimation.SetFloat("Velocity", Movement.sqrMagnitude);
+         RgPlayer.velocity = new Vector2(Movement.x, Movement.y) * Speed;
 
 
-        // if (Movement != Vector2.zero)
-        //{
-        //  PlayerAnimation.SetFloat("LookDirectionX", Movement.x);
-        //PlayerAnimation.SetFloat("LookDirectionY", Movement.y);
-        //}
-        //skinController();
-
-
-
+        // TESTES
 
 
     }
