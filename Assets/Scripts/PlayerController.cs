@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Rigidbody2D RgPlayer;
-    public Animator PlayerAnimation;
     private Vector3 Mouse;
-    public float Speed;
     private Vector2 Movement;
     [SerializeField] private GameObject Bullet;
+
+    public Rigidbody2D RgPlayer;
+    public Animator PlayerAnimation;    
+    public float Speed;
+    public Vector2 direction;
+    public sbyte PlayerLifes;
+    public bool playerVulnerability = false;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -26,7 +31,7 @@ public class PlayerController : MonoBehaviour
         Mouse = Input.mousePosition;
         Mouse = Camera.main.ScreenToWorldPoint(Mouse);
 
-        Vector2 direction = new Vector2(Mouse.x - transform.position.x, Mouse.y - transform.position.y);
+        direction = new Vector2(Mouse.x - transform.position.x, Mouse.y - transform.position.y);
         transform.up = -direction;
 
         if (Input.GetButtonDown("Fire1"))
@@ -34,7 +39,7 @@ public class PlayerController : MonoBehaviour
             Instantiate(Bullet, this.gameObject.transform);
         }
 
-
+        
 
 
          RgPlayer.velocity = new Vector2(Movement.x, Movement.y) * Speed;

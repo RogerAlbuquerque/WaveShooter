@@ -101,10 +101,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c76658a0f1ac64b9657f40860b713d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyDeathAnim: {fileID: 8811118175730991924, guid: 7866cdae2f9f3b84d9933c44c78000f3,
+  enemyDeathAnim: {fileID: 7240540807841139677, guid: 58e987099c176544db7deefd50185414,
     type: 3}
   agent: {fileID: 5892108567650721329}
   speed: 0.5
+  damagePushForce: 0.08
 --- !u!70 &5892108567650721334
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

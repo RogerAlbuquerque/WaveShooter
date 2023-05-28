@@ -12,6 +12,12 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 5892108567650721322, guid: 7ab5e6fee41902e43919e51afe3eeef2,
+        type: 3}
+      propertyPath: enemyDeathAnim
+      value: 
+      objectReference: {fileID: 8811118175730991924, guid: 7866cdae2f9f3b84d9933c44c78000f3,
+        type: 3}
     - target: {fileID: 5892108567650721323, guid: 7ab5e6fee41902e43919e51afe3eeef2,
         type: 3}
       propertyPath: m_Name

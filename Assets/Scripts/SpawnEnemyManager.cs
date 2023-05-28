@@ -39,7 +39,7 @@ public class SpawnEnemyManager : MonoBehaviour
                 Instantiate(enemy[randomEnemySpawn], new Vector3(-2, -5.1f, 0), Quaternion.identity);
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
 }
