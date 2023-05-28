@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     private Vector3 Mouse;
     private Vector2 Movement;
+    private UI_Manager ui_Manager;
     [SerializeField] private GameObject Bullet;
+
 
     public Rigidbody2D RgPlayer;
     public Animator PlayerAnimation;    
@@ -14,11 +16,15 @@ public class PlayerController : MonoBehaviour
     public Vector2 direction;
     public sbyte PlayerLifes;
     public bool playerVulnerability = false;
+
+    private SpawnEnemyManager SpawnManager;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        ui_Manager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
+        SpawnManager = GameObject.Find("SpawnEnemyes").GetComponent<SpawnEnemyManager>();
     }
 
     // Update is called once per frame
@@ -79,4 +85,35 @@ public class PlayerController : MonoBehaviour
     }
 
   
+    public void takeDamage()
+    {
+        if (PlayerLifes > 0 && playerVulnerability == false)
+        {
+            --PlayerLifes;
+            ui_Manager.UpdateCountLife();
+            playerVulnerability = true;
+            
+            StartCoroutine(PlayerDamageAnimationRoutine());
+        }
+        if (PlayerLifes <= 0)
+        {
+            Destroy(this.gameObject);
+            SpawnManager.isPlayed = false;
+            GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
+            for (byte i = 0; i < enemys.Length; i++) { Destroy(enemys[i]); }
+
+        }
+    }
+
+    public IEnumerator PlayerDamageAnimationRoutine()
+    {
+        GetComponent<Animator>().SetBool("Hited", true);
+        RgPlayer.AddForce(-direction * 0.08f, ForceMode2D.Force);
+
+        yield return new WaitForSeconds(0.2f);
+        GetComponent<Animator>().SetBool("Hited", false);
+
+        yield return new WaitForSeconds(0.8f);
+        playerVulnerability = false;
+    }
 }

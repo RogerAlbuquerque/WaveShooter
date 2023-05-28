@@ -6,6 +6,7 @@ public class SpawnEnemyManager : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private GameObject[] enemy;
+    public bool isPlayed = true;
     void Start()
     {
         StartCoroutine(enemySpawnRoutine()); 
@@ -19,7 +20,7 @@ public class SpawnEnemyManager : MonoBehaviour
 
     public IEnumerator enemySpawnRoutine()
     {
-        while(true)
+        while(isPlayed)
         {
             byte randomEnemySpawn = (byte)Random.Range(0, 4);
             if(randomEnemySpawn == 0)

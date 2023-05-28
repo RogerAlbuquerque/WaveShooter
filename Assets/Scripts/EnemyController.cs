@@ -52,37 +52,10 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if (playerScript.PlayerLifes > 0 && playerScript.playerVulnerability == false)
-            {
-                ui_Manager.UpdateCountLife();
-                playerScript.playerVulnerability = true;
-                playerScript.PlayerLifes--;
-                StartCoroutine(PlayerDamageAnimationRoutine());
-            }
-            if (playerScript.PlayerLifes <= 0)
-            {
-                Destroy(player);
-                GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
-                for(byte i = 0; i < enemys.Length; i++) { Destroy(enemys[i]); }
-            }
-
-            //Destroy(this.gameObject);
+            playerScript.takeDamage();
         }
     }
 
-    public IEnumerator PlayerDamageAnimationRoutine() 
-    {
-        
-        
-        player.GetComponent<Animator>().SetBool("Hited", true);
-        player.GetComponent<Rigidbody2D>().AddForce(-playerScript.direction * 0.08f, ForceMode2D.Force);
 
-        yield return new WaitForSeconds(0.2f);
-        player.GetComponent<Animator>().SetBool("Hited", false);
-
-        yield return new WaitForSeconds(0.8f);
-        playerScript.playerVulnerability = false;
-    }
-
+} 
     
-}
