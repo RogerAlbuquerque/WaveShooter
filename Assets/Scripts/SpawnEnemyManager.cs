@@ -62,7 +62,14 @@ public class SpawnEnemyManager : MonoBehaviour
             {
                 yield return new WaitForSeconds(0.5f);
             }
-
+            if (ui_Manager.score >= 300 && ui_Manager.score < 500)
+            {
+                yield return new WaitForSeconds(0.3f);
+            }
+            if (ui_Manager.score >= 500)
+            {
+                yield return new WaitForSeconds(0.2f);
+            }
         }
     }
 }
