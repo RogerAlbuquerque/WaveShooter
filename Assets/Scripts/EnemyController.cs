@@ -6,17 +6,19 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     // Start is called before the first frame update
-    private GameObject player;
-    private UI_Manager ui_Manager;
     [SerializeField] private GameObject enemyDeathAnim;
+    [SerializeField] private AudioClip clip;
+    private GameObject player;
+    private PlayerController playerScript;
+    private UI_Manager ui_Manager;   
     public NavMeshAgent agent;
     public float speed;
-    public PlayerController playerScript;
+
     void Start()
     {
         agent.updateRotation = false;
         agent.updateUpAxis = false;
-        player = GameObject.Find("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
         playerScript = player.GetComponent<PlayerController>();
         ui_Manager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
 
@@ -34,6 +36,7 @@ public class EnemyController : MonoBehaviour
     {
         if (collision.tag == "Bullet")
         {
+            AudioSource.PlayClipAtPoint(clip,Camera.main.transform.position, 1f);
             ui_Manager.UpdateScore();
             Instantiate(enemyDeathAnim, transform.position, Quaternion.identity);
             Destroy(this.gameObject);

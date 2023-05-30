@@ -6,16 +6,24 @@ public class SpawnEnemyManager : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private GameObject[] enemy;
-    public bool isPlayed = true;
+    [SerializeField] private MainMenu gameStarted;
+    [SerializeField] private UI_Manager ui_Manager;
+    public bool isPlayed = false;
+
     void Start()
     {
-        StartCoroutine(enemySpawnRoutine()); 
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void startCoroutine()
+    {
+        StartCoroutine(enemySpawnRoutine());
     }
 
     public IEnumerator enemySpawnRoutine()
@@ -40,7 +48,21 @@ public class SpawnEnemyManager : MonoBehaviour
                 Instantiate(enemy[randomEnemySpawn], new Vector3(-2, -5.1f, 0), Quaternion.identity);
             }
 
-            yield return new WaitForSeconds(0.2f);
+
+            if (ui_Manager.score < 50)
+            {
+                yield return new WaitForSeconds(0.9f);
+            }
+
+            if (ui_Manager.score >= 50 && ui_Manager.score  < 100)
+            {
+                yield return new WaitForSeconds(0.8f);
+            }
+            if (ui_Manager.score >= 100 && ui_Manager.score < 300)
+            {
+                yield return new WaitForSeconds(0.5f);
+            }
+
         }
     }
 }

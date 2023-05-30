@@ -6,9 +6,10 @@ using TMPro;
 
 public class UI_Manager : MonoBehaviour   
 {
-    [SerializeField] private TextMeshProUGUI TextScore;
+    public TextMeshProUGUI TextScore;
     [SerializeField] private Image PlayerLife;
-    private int score;
+   
+    public int score, Highscore;
      private GameObject Life1,Life2, Life3;
     // Start is called before the first frame update
     void Start()
@@ -16,21 +17,23 @@ public class UI_Manager : MonoBehaviour
         Life1 = GameObject.Find("Life1");
         Life2 = GameObject.Find("Life2");
         Life3 = GameObject.Find("Life3");
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       if(Input.GetKey(KeyCode.L))
-        {
-            UpdateCountLife();
-        }
+       
     }
 
     public void UpdateScore()
     {
         ++score;
         TextScore.text = "Score: " + score;
+
+        
     }
     public void UpdateCountLife()
     {
@@ -44,6 +47,15 @@ public class UI_Manager : MonoBehaviour
         else if (Life3.activeSelf)
         {
             Life3.SetActive(false);
+        }
+    }
+
+    public void UpdateHighscore()
+    {
+        if (score > Highscore)
+        {
+            Highscore = score;
+            TextScore.text = "Score: 0 " + "Highscore: " + Highscore;
         }
     }
 }

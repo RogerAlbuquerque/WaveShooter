@@ -8,17 +8,26 @@ public class FollowCamera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player").transform;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
-        if (player != null)
+
+        try
         {
-            transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+            if (player != null)
+            {
+                transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
+            }
         }
+        catch
+        {
+            print("Não encontrou ainda");
+        }
+        
 
 
     }

@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private GameObject Bullet;
+    [SerializeField] private MainMenu mainMenu;
+    private AudioSource audioSource;
     private Vector3 Mouse;
     private Vector2 Movement;
     private UI_Manager ui_Manager;
-    [SerializeField] private GameObject Bullet;
-
 
     public Rigidbody2D RgPlayer;
     public Animator PlayerAnimation;    
@@ -25,6 +26,8 @@ public class PlayerController : MonoBehaviour
     {
         ui_Manager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
         SpawnManager = GameObject.Find("SpawnEnemyes").GetComponent<SpawnEnemyManager>();
+        mainMenu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -43,6 +46,8 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             Instantiate(Bullet, this.gameObject.transform);
+            audioSource.Play();
+
         }
 
         
@@ -55,7 +60,6 @@ public class PlayerController : MonoBehaviour
 
 
     }
-
 
 
     void MapLimiter()
@@ -101,6 +105,7 @@ public class PlayerController : MonoBehaviour
             SpawnManager.isPlayed = false;
             GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
             for (byte i = 0; i < enemys.Length; i++) { Destroy(enemys[i]); }
+            mainMenu.gameOver();
 
         }
     }
