@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private GameObject weakBullet;
     [SerializeField] 
     private GameObject strongBullet;
+    [SerializeField] 
+    private AudioClip strongShootSound;
 
     
     
@@ -96,13 +98,13 @@ public class PlayerController : MonoBehaviour
             if(powerOfShoot < 5 && powerOfShoot >= 3)
             {
                 Instantiate(weakBullet, this.gameObject.transform);
-                //audioSource.Play();
+                audioSource.Play();
                 powerOfShoot = 1;     
             }
             if(powerOfShoot >= 5)
             {
                 Instantiate(strongBullet, this.gameObject.transform);
-               // audioSource.Play(); 
+                audioSource.PlayOneShot(strongShootSound);
                 powerOfShoot = 1;     
             }
 

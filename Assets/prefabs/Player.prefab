@@ -93,6 +93,7 @@ MonoBehaviour:
     type: 3}
   strongBullet: {fileID: 4627901154760163736, guid: e7743ac6049543949a61f0c457927ea7,
     type: 3}
+  strongShootSound: {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
   powerOfShoot: 1
   playerVulnerability: 0
   RgPlayer: {fileID: 2380052120115611394}
