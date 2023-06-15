@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BulletMovement : MonoBehaviour
 {
+    private int numberOfEnemyHited;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +26,22 @@ public class BulletMovement : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
+            numberOfEnemyHited++;
+
+           if(gameObject.name == "projectile(Clone)")
+           {
+                Destroy(this.gameObject);
+           }
+           if(gameObject.name == "weak_shoot(Clone)" && numberOfEnemyHited == 2 )
+           {
+              Destroy(this.gameObject);
+           }
+           if(gameObject.name == "strong_shoot(Clone)" && numberOfEnemyHited == 5)
+           {
+              Destroy(this.gameObject);
+           }
            
-            Destroy(this.gameObject);
+            ///Destroy(this.gameObject);
         }
 
     }

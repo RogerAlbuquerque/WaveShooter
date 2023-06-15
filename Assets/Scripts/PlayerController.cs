@@ -79,7 +79,6 @@ public class PlayerController : MonoBehaviour
         {
            
             powerOfShoot += 1 * Time.deltaTime;
-            print((int)powerOfShoot);
         }
 
         
@@ -87,9 +86,6 @@ public class PlayerController : MonoBehaviour
         {          
             
             powerOfShoot = (int)powerOfShoot;
-            
-
-            print("O valor do tiro é: " + powerOfShoot);
             
             if(powerOfShoot < 3)
             {
