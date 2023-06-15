@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
             if(powerOfShoot < 3)
             {
                 Instantiate(Bullet, this.gameObject.transform);
-                //audioSource.Play(); 
+                audioSource.Play(); 
                 powerOfShoot = 1;                    
             }
             if(powerOfShoot < 5 && powerOfShoot >= 3)
