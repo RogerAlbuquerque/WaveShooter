@@ -4,21 +4,37 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private GameObject Bullet;
-    [SerializeField] private MainMenu mainMenu;
+    [SerializeField] 
+    private MainMenu mainMenu;
+    [SerializeField] 
+    private GameObject Bullet;
+    [SerializeField] 
+    private GameObject weakBullet;
+    [SerializeField] 
+    private GameObject strongBullet;
+
+    
+    
+    [SerializeField] 
+    [Range (1,5)]
+    private float powerOfShoot = 1;
+
     private AudioSource audioSource;
     private Vector3 Mouse;
     private Vector2 Movement;
     private UI_Manager ui_Manager;
+    private SpawnEnemyManager SpawnManager;    
 
+
+    public bool playerVulnerability = false;
     public Rigidbody2D RgPlayer;
     public Animator PlayerAnimation;    
     public float Speed;
     public Vector2 direction;
     public sbyte PlayerLifes;
-    public bool playerVulnerability = false;
 
-    private SpawnEnemyManager SpawnManager;
+
+    
     
 
     // Start is called before the first frame update
@@ -27,14 +43,12 @@ public class PlayerController : MonoBehaviour
         ui_Manager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
         SpawnManager = GameObject.Find("SpawnEnemyes").GetComponent<SpawnEnemyManager>();
         mainMenu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
-        audioSource = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();       
     }
 
     // Update is called once per frame
     void Update()
     {
-        MapLimiter();
-
         Movement.x = Input.GetAxis("Horizontal");
         Movement.y = Input.GetAxis("Vertical");
         Mouse = Input.mousePosition;
@@ -43,24 +57,62 @@ public class PlayerController : MonoBehaviour
         direction = new Vector2(Mouse.x - transform.position.x, Mouse.y - transform.position.y);
         transform.up = -direction;
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Instantiate(Bullet, this.gameObject.transform);
-            audioSource.Play();
 
-        }
+        RgPlayer.velocity = new Vector2(Movement.x, Movement.y) * Speed;
 
+        MapLimiter();
+        Shoot();
         
+       
 
+       
 
-         RgPlayer.velocity = new Vector2(Movement.x, Movement.y) * Speed;
-
-
-        // TESTES
 
 
     }
 
+    
+
+    void Shoot()
+    {
+         if (Input.GetButton("Fire1"))
+        {
+           
+            powerOfShoot += 1 * Time.deltaTime;
+            print((int)powerOfShoot);
+        }
+
+        
+         if (Input.GetButtonUp("Fire1"))
+        {          
+            
+            powerOfShoot = (int)powerOfShoot;
+            
+
+            print("O valor do tiro é: " + powerOfShoot);
+            
+            if(powerOfShoot < 3)
+            {
+                Instantiate(Bullet, this.gameObject.transform);
+                //audioSource.Play(); 
+                powerOfShoot = 1;                    
+            }
+            if(powerOfShoot < 5 && powerOfShoot >= 3)
+            {
+                Instantiate(weakBullet, this.gameObject.transform);
+                //audioSource.Play();
+                powerOfShoot = 1;     
+            }
+            if(powerOfShoot >= 5)
+            {
+                Instantiate(strongBullet, this.gameObject.transform);
+               // audioSource.Play(); 
+                powerOfShoot = 1;     
+            }
+
+                   
+        }
+    }
 
     void MapLimiter()
     {
@@ -121,4 +173,5 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
         playerVulnerability = false;
     }
+
 }
