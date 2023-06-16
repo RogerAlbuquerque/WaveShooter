@@ -36,10 +36,10 @@ public class BulletMovement : MonoBehaviour
            {
               Destroy(this.gameObject);
            }
-           if(gameObject.name == "strong_shoot(Clone)" && numberOfEnemyHited == 5)
-           {
-              Destroy(this.gameObject);
-           }
+        //    if(gameObject.name == "strong_shoot(Clone)")
+        //    {
+        //       Destroy(this.gameObject);
+        //    }
            
             ///Destroy(this.gameObject);
         }

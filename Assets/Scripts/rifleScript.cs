@@ -21,10 +21,23 @@ public class rifleScript : MonoBehaviour
     private GameObject weakBullet;
     [SerializeField] 
     private GameObject strongBullet;
-    [SerializeField] 
-    private AudioClip strongShootSound;
+   
     [Range (1,5)]
     private float powerOfShoot = 1;
+
+    [Header("Audios")]
+    [SerializeField] 
+    private AudioClip weakShootSound;
+    [SerializeField] 
+    private AudioClip strongShootSound;
+    [SerializeField] 
+    private AudioClip weakChargerSound;
+    [SerializeField] 
+    private AudioClip mediunChargerSound;
+    [SerializeField] 
+    private AudioClip strongChargerSound;
+    
+    
 
 
     // Start is called before the first frame update
@@ -34,43 +47,72 @@ public class rifleScript : MonoBehaviour
         particles = gunEffects.emission;
         gunEffects.Stop();
         audioSource = GetComponent<AudioSource>();    
+        gunEffects.Play();
+        particles.rateOverTime = 0;
     }
+    public void chargeShoot()
+    {         
+            powerOfShoot += 1 * Time.deltaTime;
 
-    // Update is called once per frame
-    void Update()
-    {
-
-        if(powerOfShoot < 2 && powerOfShoot >= 1.5f)
+        /////////////////////////////////////////////////////////////////
+         
+         if( powerOfShoot >= 1.5f )
         {
-            gunEffects.Play();
+            
             particles.rateOverTime = 20;
-            print("TA 50 AS PARTICULAS");
+                
+            audioSource.loop = true;               
+            if(!audioSource.isPlaying)
+            {
+                audioSource.Play(); 
+            }
+
+                
         }
-         if(powerOfShoot < 5 && powerOfShoot >= 3)
+         if(powerOfShoot >= 3 && powerOfShoot < 5)
         {
-            gunEffects.Play();
-            particles.rateOverTime = 50;
-            print("TA 50 AS PARTICULAS");
+           audioSource.clip = mediunChargerSound;
+             if(!audioSource.isPlaying)
+            {
+                audioSource.Play(); 
+            }
+          particles.rateOverTime = 150;
+
         }
 
          if(powerOfShoot > 5)
          {
-            particles.rateOverTime = 400;
-            print("250 PARTICULAS");
+             audioSource.clip = strongChargerSound;
+               if(!audioSource.isPlaying)
+            {
+                audioSource.Play(); 
+            }
+             particles.rateOverTime = 400;
          }
+        //////////////////////////////////////////////////////////////////
+        // if( Input.GetKey(KeyCode.J) )
+        // {
+        //     audioSource.clip = weakChargerSound;
+        //     audioSource.loop = true;
+        //     if(!audioSource.isPlaying)
+        //     {
+        //         audioSource.Play(); 
+        //     }
+                
+        // }
+        //  if(Input.GetKey(KeyCode.K))
+        // {
+        //     audioSource.clip = mediunChargerSound;
+        //     audioSource.Play();   
+        // }
+
+        //  if(Input.GetKey(KeyCode.L))
+        //  {
+        //     audioSource.clip = strongChargerSound;
+        //     audioSource.Play();   
+        //  }
     }
 
-    public void chargeShoot()
-    {
-         if (Input.GetButton("Fire1"))
-        {
-           
-            powerOfShoot += 1 * Time.deltaTime;
-        }
-
-        
-        
-    }
     public void shoot()
     {       
         powerOfShoot = (int)powerOfShoot;        
@@ -78,12 +120,12 @@ public class rifleScript : MonoBehaviour
         if(powerOfShoot < 3)
         {
             Instantiate(Bullet, this.gameObject.transform);
-            audioSource.Play();                                 
+            audioSource.PlayOneShot(weakShootSound);                                 
         }
         if(powerOfShoot < 5 && powerOfShoot >= 3)
         {
             Instantiate(weakBullet, this.gameObject.transform);
-            audioSource.Play();
+            audioSource.PlayOneShot(weakShootSound);
                                 
         }
         if(powerOfShoot >= 5)
@@ -93,7 +135,9 @@ public class rifleScript : MonoBehaviour
                         
         }
             powerOfShoot = 1;
-            gunEffects.Stop();          
+            particles.rateOverTime = 0;     
+            audioSource.loop = false;   
+            audioSource.clip = weakChargerSound;  
         
     }
 }
