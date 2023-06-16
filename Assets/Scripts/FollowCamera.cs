@@ -5,13 +5,7 @@ using UnityEngine;
 public class FollowCamera : MonoBehaviour
 {
     private Transform player;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -20,12 +14,16 @@ public class FollowCamera : MonoBehaviour
             player = GameObject.FindGameObjectWithTag("Player").transform;
             if (player != null)
             {
-                transform.position = new Vector3(player.position.x, player.position.y, transform.position.z);
+                transform.position = new Vector3(
+                    Mathf.Clamp(player.position.x,-5.83f, 6.08f), 
+                    Mathf.Clamp(player.position.y,0.26f, 13.72f),
+                    -1
+                    );
             }
         }
         catch
         {
-            print("Não encontrou ainda");
+           
         }
         
 

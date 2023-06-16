@@ -82,10 +82,10 @@ public class PlayerController : MonoBehaviour
             // print(.position.y);
             transform.position = new Vector2(transform.position.x, 17.8f);
         }
-        if (transform.position.y <= -5.08)
+        if (transform.position.y <= -4.6)
         {
             // print(.position.y);
-            transform.position = new Vector2(transform.position.x, -5.08f);
+            transform.position = new Vector2(transform.position.x, -4.6f);
         }
         if (transform.position.x >= 15.6f)
         {
