@@ -17,23 +17,12 @@ public class UI_Manager : MonoBehaviour
         Life1 = GameObject.Find("Life1");
         Life2 = GameObject.Find("Life2");
         Life3 = GameObject.Find("Life3");
-
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-       
     }
 
     public void UpdateScore()
     {
         ++score;
-        TextScore.text = "Score: " + score;
-
-        
+        TextScore.text = "Score: " + score;        
     }
     public void UpdateCountLife()
     {
@@ -52,10 +41,10 @@ public class UI_Manager : MonoBehaviour
 
     public void UpdateHighscore()
     {
-        if (score > Highscore)
-        {
-            Highscore = score;
+        
+           if(score > Highscore) {Highscore = score;}
             TextScore.text = "Score: 0 " + "Highscore: " + Highscore;
-        }
+            score = 0;
+        
     }
 }
