@@ -4,36 +4,31 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] 
-    private MainMenu mainMenu;
-    [SerializeField] 
-    private GameObject Bullet;
-    [SerializeField] 
-    private GameObject weakBullet;
-    [SerializeField] 
-    private GameObject strongBullet;
-    [SerializeField] 
-    private AudioClip strongShootSound;
-
+    [Header("Status")]
+    public bool playerVulnerability = false;    
+    public sbyte PlayerLifes;
     
-    
-    [SerializeField] 
-    [Range (1,5)]
-    private float powerOfShoot = 1;
 
-    private AudioSource audioSource;
-    private Vector3 Mouse;
-    private Vector2 Movement;
-    private UI_Manager ui_Manager;
-    private SpawnEnemyManager SpawnManager;    
-
-
-    public bool playerVulnerability = false;
+    [Header("Movement")]
     public Rigidbody2D RgPlayer;
-    public Animator PlayerAnimation;    
     public float Speed;
     public Vector2 direction;
-    public sbyte PlayerLifes;
+
+    private Vector3 Mouse;
+    private Vector2 Movement;
+    
+    [Header("Animation")]
+    public Animator PlayerAnimation;
+    
+
+    [Header("UI and enemys Manager")]   
+    private MainMenu mainMenu;
+    private UI_Manager ui_Manager;
+    private SpawnEnemyManager SpawnManager;  
+
+    [SerializeField]
+    private rifleScript rifleScript;
+
 
 
     
@@ -45,7 +40,7 @@ public class PlayerController : MonoBehaviour
         ui_Manager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
         SpawnManager = GameObject.Find("SpawnEnemyes").GetComponent<SpawnEnemyManager>();
         mainMenu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
-        audioSource = GetComponent<AudioSource>();       
+           
     }
 
     // Update is called once per frame
@@ -63,54 +58,22 @@ public class PlayerController : MonoBehaviour
         RgPlayer.velocity = new Vector2(Movement.x, Movement.y) * Speed;
 
         MapLimiter();
-        Shoot();
-        
+         if (Input.GetButton("Fire1"))
+         {
+             rifleScript.chargeShoot();
+         }
+
+          if (Input.GetButtonUp("Fire1"))
+          {
+             rifleScript.shoot();
+          }
        
-
-       
-
-
 
     }
 
     
 
-    void Shoot()
-    {
-         if (Input.GetButton("Fire1"))
-        {
-           
-            powerOfShoot += 1 * Time.deltaTime;
-        }
-
-        
-         if (Input.GetButtonUp("Fire1"))
-        {          
-            
-            powerOfShoot = (int)powerOfShoot;
-            
-            if(powerOfShoot < 3)
-            {
-                Instantiate(Bullet, this.gameObject.transform);
-                audioSource.Play(); 
-                powerOfShoot = 1;                    
-            }
-            if(powerOfShoot < 5 && powerOfShoot >= 3)
-            {
-                Instantiate(weakBullet, this.gameObject.transform);
-                audioSource.Play();
-                powerOfShoot = 1;     
-            }
-            if(powerOfShoot >= 5)
-            {
-                Instantiate(strongBullet, this.gameObject.transform);
-                audioSource.PlayOneShot(strongShootSound);
-                powerOfShoot = 1;     
-            }
-
-                   
-        }
-    }
+    
 
     void MapLimiter()
     {
