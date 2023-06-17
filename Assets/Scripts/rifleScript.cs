@@ -11,7 +11,8 @@ public class rifleScript : MonoBehaviour
     private ParticleSystem gunEffects;
     private ParticleSystem.EmissionModule particles;
     
-    private AudioSource audioSource;     
+    private AudioSource audioSource; 
+        
 
     
     [Header("Weapon Stats")]
@@ -119,18 +120,18 @@ public class rifleScript : MonoBehaviour
         
         if(powerOfShoot < 3)
         {
-            Instantiate(Bullet, this.gameObject.transform);
+            Instantiate(Bullet, this.gameObject.transform).transform.SetParent(null);
             audioSource.PlayOneShot(weakShootSound);                                 
         }
         if(powerOfShoot < 5 && powerOfShoot >= 3)
         {
-            Instantiate(weakBullet, this.gameObject.transform);
+            Instantiate(weakBullet, this.gameObject.transform).transform.SetParent(null);
             audioSource.PlayOneShot(weakShootSound);
                                 
         }
         if(powerOfShoot >= 5)
         {
-            Instantiate(strongBullet, this.gameObject.transform);
+            Instantiate(strongBullet, this.gameObject.transform).transform.SetParent(null);
             audioSource.PlayOneShot(strongShootSound);
                         
         }

@@ -5048,10 +5048,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 2380052120115611393}
-  Bullet: {fileID: 7929709700368745943, guid: b4f26472eaff228418d98c7b3f1b4b59, type: 3}
-  weakBullet: {fileID: 5869778791291778585, guid: e3ebc68e9ef02e74e91da881206b9fc1,
+  Bullet: {fileID: 7942227243240368578, guid: b4f26472eaff228418d98c7b3f1b4b59, type: 3}
+  weakBullet: {fileID: 4997410125821923200, guid: e3ebc68e9ef02e74e91da881206b9fc1,
     type: 3}
-  strongBullet: {fileID: 4627901154760163736, guid: e7743ac6049543949a61f0c457927ea7,
+  strongBullet: {fileID: 5016208960729655764, guid: e7743ac6049543949a61f0c457927ea7,
     type: 3}
   weakShootSound: {fileID: 8300000, guid: df1c69ef629f8e543a177f6c6e3c9bf9, type: 3}
   strongShootSound: {fileID: 8300000, guid: b9eff218e132a4e76be78840eca96fb2, type: 3}
