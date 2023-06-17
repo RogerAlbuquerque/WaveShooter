@@ -9,6 +9,8 @@ public class UI_Manager : MonoBehaviour
 
     [SerializeField] private Image PlayerLife;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private AudioClip pauseGameSound;
+    [SerializeField] private AudioSource audioSource; 
     
     private GameObject Life1,Life2, Life3;
    
@@ -54,5 +56,6 @@ public class UI_Manager : MonoBehaviour
     public void pauseGame(bool isPaused)
     {
         pauseMenu.SetActive(isPaused);
+        audioSource.PlayOneShot(pauseGameSound);     
     }
 }
