@@ -6,12 +6,15 @@ using TMPro;
 
 public class UI_Manager : MonoBehaviour   
 {
-    public TextMeshProUGUI TextScore;
+
     [SerializeField] private Image PlayerLife;
+    [SerializeField] private GameObject pauseMenu;
+    
+    private GameObject Life1,Life2, Life3;
    
     public int score, Highscore;
-     private GameObject Life1,Life2, Life3;
-    // Start is called before the first frame update
+    public TextMeshProUGUI TextScore;
+
     void Start()
     {
         Life1 = GameObject.Find("Life1");
@@ -46,5 +49,10 @@ public class UI_Manager : MonoBehaviour
             TextScore.text = "Score: 0 " + "Highscore: " + Highscore;
             score = 0;
         
+    }
+
+    public void pauseGame(bool isPaused)
+    {
+        pauseMenu.SetActive(isPaused);
     }
 }

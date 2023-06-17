@@ -29,6 +29,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private rifleScript rifleScript;
 
+    private GameManager gameManager;
+
 
 
     
@@ -40,33 +42,39 @@ public class PlayerController : MonoBehaviour
         ui_Manager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
         SpawnManager = GameObject.Find("SpawnEnemyes").GetComponent<SpawnEnemyManager>();
         mainMenu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
+
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
            
     }
 
     // Update is called once per frame
     void Update()
     {
-        Movement.x = Input.GetAxis("Horizontal");
-        Movement.y = Input.GetAxis("Vertical");
-        Mouse = Input.mousePosition;
-        Mouse = Camera.main.ScreenToWorldPoint(Mouse);
+        if(gameManager.isGamePaused == false)
+        {
+            Movement.x = Input.GetAxis("Horizontal");
+            Movement.y = Input.GetAxis("Vertical");
+            Mouse = Input.mousePosition;
+            Mouse = Camera.main.ScreenToWorldPoint(Mouse);
 
-        direction = new Vector2(Mouse.x - transform.position.x, Mouse.y - transform.position.y);
-        transform.up = -direction;
+            direction = new Vector2(Mouse.x - transform.position.x, Mouse.y - transform.position.y);
+            transform.up = -direction;
 
 
-        RgPlayer.velocity = new Vector2(Movement.x, Movement.y) * Speed;
+            RgPlayer.velocity = new Vector2(Movement.x, Movement.y) * Speed;
 
-        MapLimiter();
-         if (Input.GetButton("Fire1"))
-         {
-             rifleScript.chargeShoot();
-         }
+            MapLimiter();
+            if (Input.GetButton("Fire1"))
+            {
+                rifleScript.chargeShoot();
+            }
 
-          if (Input.GetButtonUp("Fire1"))
-          {
-             rifleScript.shoot();
-          }
+            if (Input.GetButtonUp("Fire1"))
+            {
+                rifleScript.shoot();
+            }
+        }
+        
        
 
     }
