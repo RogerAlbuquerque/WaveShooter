@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject playerPrefab;
-    [SerializeField] private SpawnEnemyManager startSpawnEnemy;
+    [SerializeField] private GameObject playerPrefab,Leaderboard,Logo;
+    [SerializeField] private SpawnEnemyManager startSpawnEnemy; 
     private UI_Manager ui_Manager;
-    //private FollowCamera followCamera;
+
     public bool isGameStarted = false;
     void Start()
     {
@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
         {
             this.gameObject.SetActive(false);
         }
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Return) && Logo.activeSelf == true)
         {
             startGame();
         }
@@ -43,4 +43,11 @@ public class MainMenu : MonoBehaviour
         isGameStarted = false;
         ui_Manager.UpdateHighscore();
     }
+
+     public void handleLeaderboardMenu()
+    {
+        Leaderboard.SetActive(!Leaderboard.activeSelf);
+        Logo.SetActive(!Logo.activeSelf);
+    }
+
 }

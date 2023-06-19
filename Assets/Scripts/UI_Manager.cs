@@ -22,6 +22,8 @@ public class UI_Manager : MonoBehaviour
         Life1 = GameObject.Find("Life1");
         Life2 = GameObject.Find("Life2");
         Life3 = GameObject.Find("Life3");
+
+       
     }
 
     public void UpdateScore()
@@ -52,6 +54,9 @@ public class UI_Manager : MonoBehaviour
             score = 0;
         
     }
+
+   
+
 
     public void pauseGame(bool isPaused)
     {
