@@ -15,8 +15,8 @@ public class FollowCamera : MonoBehaviour
             if (player != null)
             {
                 transform.position = new Vector3(
-                    Mathf.Clamp(player.position.x,-5.83f, 6.08f), 
-                    Mathf.Clamp(player.position.y,0.26f, 13.72f),
+                    Mathf.Clamp(player.position.x,-6.42f, 6.45f), 
+                    Mathf.Clamp(player.position.y,-0.36f, 14.24f),
                     -1
                     );
             }
