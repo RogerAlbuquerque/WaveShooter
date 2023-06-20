@@ -55,9 +55,8 @@ public class rifleScript : MonoBehaviour
     {         
             powerOfShoot += 1 * Time.deltaTime;
 
-        /////////////////////////////////////////////////////////////////
          
-         if( powerOfShoot >= 1.5f )
+        if( powerOfShoot >= 1.5f )
         {
             
             particles.rateOverTime = 20;
@@ -90,28 +89,6 @@ public class rifleScript : MonoBehaviour
             }
              particles.rateOverTime = 400;
          }
-        //////////////////////////////////////////////////////////////////
-        // if( Input.GetKey(KeyCode.J) )
-        // {
-        //     audioSource.clip = weakChargerSound;
-        //     audioSource.loop = true;
-        //     if(!audioSource.isPlaying)
-        //     {
-        //         audioSource.Play(); 
-        //     }
-                
-        // }
-        //  if(Input.GetKey(KeyCode.K))
-        // {
-        //     audioSource.clip = mediunChargerSound;
-        //     audioSource.Play();   
-        // }
-
-        //  if(Input.GetKey(KeyCode.L))
-        //  {
-        //     audioSource.clip = strongChargerSound;
-        //     audioSource.Play();   
-        //  }
     }
 
     public void shoot()
@@ -138,7 +115,6 @@ public class rifleScript : MonoBehaviour
             powerOfShoot = 1;
             particles.rateOverTime = 0;     
             audioSource.loop = false;   
-            audioSource.clip = weakChargerSound;  
-        
+            audioSource.clip = weakChargerSound;
     }
 }

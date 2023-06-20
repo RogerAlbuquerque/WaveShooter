@@ -288,7 +288,7 @@ GameObject:
   - component: {fileID: 172651774}
   - component: {fileID: 172651773}
   m_Layer: 5
-  m_Name: Text
+  m_Name: username
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1346,7 +1346,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 500
+  MaxDistance: 340.50903
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -3346,7 +3346,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb622148e29992b4ab35bbc5a61d1f72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPrefab: {fileID: 2380052120115611423, guid: 8432924ed03f8c44daa51f41c25927c0,
+    type: 3}
+  Leaderboard: {fileID: 1674926975}
+  mainMenu: {fileID: 1935407216}
+  startSpawnEnemy: {fileID: 1179233284}
+  isGameStarted: 0
   isGamePaused: 0
+  username: {fileID: 1564632348}
+  ListRankingScore: {fileID: 1789807046}
+  listRankingPlayers: {fileID: 1564632348}
 --- !u!4 &1069962247
 Transform:
   m_ObjectHideFlags: 0
@@ -4002,7 +4011,6 @@ MonoBehaviour:
   - {fileID: 3510655114148762742, guid: 86570ef72d7c1dd4a810c4b55e140037, type: 3}
   - {fileID: 4630671922091711852, guid: 98562e9b4b0bb5a47b8820ebb47866da, type: 3}
   - {fileID: 2608582476367257237, guid: f390b3ce3151c8f47bf77324bfc80cbc, type: 3}
-  gameStarted: {fileID: 1935407221}
   ui_Manager: {fileID: 527771190}
   isPlayed: 0
 --- !u!1 &1194292325
@@ -4404,8 +4412,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1935407221}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 1069962246}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: handleLeaderboardMenu
         m_Mode: 1
         m_Arguments:
@@ -5052,7 +5060,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Rogermorino
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5115,7 +5123,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: -52.725067, w: -8.550026}
+  m_margin: {x: 0, y: 0, z: -52.725067, w: -347.85098}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -5700,9 +5708,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '4000
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -5765,7 +5771,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -37.995113, y: 0, z: 0, w: 0}
+  m_margin: {x: -67.78739, y: 0, z: 1.1171993, w: -352.54196}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -16182,7 +16188,6 @@ GameObject:
   - component: {fileID: 1935407217}
   - component: {fileID: 1935407219}
   - component: {fileID: 1935407218}
-  - component: {fileID: 1935407221}
   m_Layer: 5
   m_Name: MainMenu
   m_TagString: Untagged
@@ -16252,24 +16257,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935407216}
   m_CullTransparentMesh: 1
---- !u!114 &1935407221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1935407216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cdcd31832b2d84945a05a1d3fe2b15d7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 2380052120115611423, guid: 8432924ed03f8c44daa51f41c25927c0,
-    type: 3}
-  Leaderboard: {fileID: 1674926975}
-  Logo: {fileID: 1170268577}
-  startSpawnEnemy: {fileID: 1179233284}
-  isGameStarted: 0
 --- !u!1001 &1971582854
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16384,7 +16371,7 @@ GameObject:
   - component: {fileID: 1980823343}
   - component: {fileID: 1980823342}
   m_Layer: 5
-  m_Name: username
+  m_Name: InputText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16472,7 +16459,19 @@ MonoBehaviour:
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1069962246}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: updateUsername
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_OnSubmit:
     m_PersistentCalls:
       m_Calls: []

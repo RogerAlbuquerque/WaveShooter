@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using LootLocker.Requests;
 
 public class UI_Manager : MonoBehaviour   
 {
@@ -16,6 +17,7 @@ public class UI_Manager : MonoBehaviour
    
     public int score, Highscore;
     public TextMeshProUGUI TextScore;
+    string leaderBoardID = "15298";
 
     void Start()
     {
@@ -46,21 +48,56 @@ public class UI_Manager : MonoBehaviour
         }
     }
 
+    public void resetLifeCount()
+    {
+        Life1.SetActive(true);
+        Life2.SetActive(true);
+        Life3.SetActive(true);
+    }
+
     public void UpdateHighscore()
     {
         
-           if(score > Highscore) {Highscore = score;}
+           if(score > Highscore) {
+                Highscore = score;
+                StartCoroutine(sendScoreToDatabase(Highscore));
+            }
             TextScore.text = "Score: 0 " + "Highscore: " + Highscore;
+           
             score = 0;
         
     }
-
-   
-
 
     public void pauseGame(bool isPaused)
     {
         pauseMenu.SetActive(isPaused);
         audioSource.PlayOneShot(pauseGameSound);     
     }
+
+
+
+
+    public IEnumerator sendScoreToDatabase(int scoreToUpload)
+    {
+        bool done = false;
+        string playerID = PlayerPrefs.GetString("PlayerID");	// A variável criada antes que tem o id do player.
+        LootLockerSDKManager.SubmitScore(playerID,scoreToUpload, leaderBoardID, (response) =>{
+        
+        if(response.success)
+            {
+                Debug.Log("Successfully uploaded score");
+                done = true;
+            }
+        else
+            {
+                Debug.Log("Failed: " + response.Error);
+                done = true;
+            }
+        });
+
+        yield return new WaitWhile(() => done == false);	
+
+    }
+
+   
 }

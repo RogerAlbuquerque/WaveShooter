@@ -21,8 +21,7 @@ public class PlayerController : MonoBehaviour
     public Animator PlayerAnimation;
     
 
-    [Header("UI and enemys Manager")]   
-    private MainMenu mainMenu;
+    [Header("UI and enemys Manager")] 
     private UI_Manager ui_Manager;
     private SpawnEnemyManager SpawnManager;  
 
@@ -41,7 +40,6 @@ public class PlayerController : MonoBehaviour
     {
         ui_Manager = GameObject.Find("Canvas").GetComponent<UI_Manager>();
         SpawnManager = GameObject.Find("SpawnEnemyes").GetComponent<SpawnEnemyManager>();
-        mainMenu = GameObject.Find("MainMenu").GetComponent<MainMenu>();
 
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
            
@@ -126,7 +124,7 @@ public class PlayerController : MonoBehaviour
             SpawnManager.isPlayed = false;
             GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
             for (byte i = 0; i < enemys.Length; i++) { Destroy(enemys[i]); }
-            mainMenu.gameOver();
+            gameManager.gameOver();
 
         }
     }

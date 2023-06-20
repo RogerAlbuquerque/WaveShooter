@@ -20,16 +20,15 @@ public class BulletMovement : MonoBehaviour
     {
         if(gameManager.isGamePaused == false)
         {
-              if (transform.position.y <= -6 || transform.position.y >= 20 || transform.position.x <= -16 || transform.position.x >= 16)
-        {
-            Destroy(this.gameObject);
-        }
+            if (transform.position.y <= -6 || transform.position.y >= 20 || transform.position.x <= -16 || transform.position.x >= 16)
+            {
+                Destroy(this.gameObject);
+            }
 
-        transform.Translate(Vector3.right);
+            transform.Translate(Vector3.right);
         }
-
-      
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Enemy")
@@ -44,12 +43,6 @@ public class BulletMovement : MonoBehaviour
            {
               Destroy(this.gameObject);
            }
-        //    if(gameObject.name == "strong_shoot(Clone)")
-        //    {
-        //       Destroy(this.gameObject);
-        //    }
-           
-            ///Destroy(this.gameObject);
         }
 
     }

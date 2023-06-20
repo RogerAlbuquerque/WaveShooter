@@ -6,7 +6,6 @@ public class SpawnEnemyManager : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private GameObject[] enemy;
-    [SerializeField] private MainMenu gameStarted;
     [SerializeField] private UI_Manager ui_Manager;
     public bool isPlayed = false;
 
@@ -51,24 +50,24 @@ public class SpawnEnemyManager : MonoBehaviour
 
             if (ui_Manager.score < 50)
             {
-                yield return new WaitForSeconds(0.9f);
+                yield return new WaitForSeconds(0.6f);
             }
 
             if (ui_Manager.score >= 50 && ui_Manager.score  < 100)
             {
-                yield return new WaitForSeconds(0.8f);
+                yield return new WaitForSeconds(0.4f);
             }
             if (ui_Manager.score >= 100 && ui_Manager.score < 300)
             {
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.2f);
             }
             if (ui_Manager.score >= 300 && ui_Manager.score < 500)
             {
-                yield return new WaitForSeconds(0.3f);
+                yield return new WaitForSeconds(0.15f);
             }
             if (ui_Manager.score >= 500)
             {
-                yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.1f);
             }
         }
     }
